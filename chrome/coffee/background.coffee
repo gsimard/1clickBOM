@@ -30,13 +30,13 @@ get_location = (callback) ->
         response = JSON.parse(event.target.responseText)
         browser.storageSet({country: countries_data[response.country_name]}, callback)
 
-window.browser.onInstalled () ->
+browser.onInstalled () ->
     get_location () ->
-        window.browser.tabsCreate({"url": window.browser.getURL("html/options.html")})
+        browser.tabsCreate({"url": browser.getURL("html/options.html")})
 
 window.bom_manager = new BomManager
 
-window.browser.storageOnChanged (changes) ->
+browser.storageOnChanged (changes) ->
     if changes.country || changes.settings
         window.bom_manager = new BomManager
 
